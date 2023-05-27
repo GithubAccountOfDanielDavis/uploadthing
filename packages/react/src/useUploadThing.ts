@@ -21,13 +21,13 @@ const useEndpointMetadata = (endpoint: string) => {
 export const useUploadThing = <T extends string>({
   endpoint,
   onClientUploadComplete,
-  onUploadError,
+  onClientUploadError,
 }: {
   endpoint: T;
   onClientUploadComplete?: (
     res?: Awaited<ReturnType<typeof DANGEROUS__uploadFiles>>
   ) => void;
-  onUploadError?: (e: Error) => void;
+  onClientUploadError?: (e: Error) => void;
 }) => {
   const [isUploading, setUploading] = useState(false);
 
@@ -42,7 +42,7 @@ export const useUploadThing = <T extends string>({
       return res;
     } catch (e) {
       setUploading(false);
-      onUploadError?.(e as Error);
+      onClientUploadError?.(e as Error);
       return;
     }
   });

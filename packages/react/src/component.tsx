@@ -27,13 +27,13 @@ export function UploadButton<TRouter extends void | FileRouter = void>(props: {
   onClientUploadComplete?: (
     res?: Awaited<ReturnType<typeof DANGEROUS__uploadFiles>>
   ) => void;
-  onUploadError?: (error: Error) => void;
+  onClientUploadError?: (error: Error) => void;
 }) {
   const { startUpload, isUploading, permittedFileInfo } =
     useUploadThing<string>({
       endpoint: props.endpoint as string,
       onClientUploadComplete: props.onClientUploadComplete,
-      onUploadError: props.onUploadError,
+      onClientUploadError: props.onClientUploadError,
     });
 
   const { maxSize, fileTypes } = permittedFileInfo ?? {};
@@ -94,13 +94,13 @@ export const UploadDropzone = <
   onClientUploadComplete?: (
     res?: Awaited<ReturnType<typeof DANGEROUS__uploadFiles>>
   ) => void;
-  onUploadError?: (error: Error) => void;
+  onClientUploadError?: (error: Error) => void;
 }) => {
   const { startUpload, isUploading, permittedFileInfo } =
     useUploadThing<string>({
       endpoint: props.endpoint as string,
       onClientUploadComplete: props.onClientUploadComplete,
-      onUploadError: props.onUploadError,
+      onClientUploadError: props.onClientUploadError,
     });
 
   const [files, setFiles] = useState<File[]>([]);
